@@ -33,9 +33,6 @@ def embed_prompt(prompt):
 
 # Define function to generate custom prompt
 def generate_prompt(disc_type, objective_verb, product_type):
-    #disc_type = 
-    #objective_verb =    # example: "sell", "convince", "persuade"
-    #product_type =      # example: "a product", "a service", "a solution"
 
     text = "What's the best way to communicate to a disc type {} if I'm trying to {} to them {}? ".format(disc_type, objective_verb, product_type)
 
@@ -65,7 +62,7 @@ def generate_prompt(disc_type, objective_verb, product_type):
     return prompt
   
   
-  def generate_text(disc_type, verb, product):
+def generate_text(disc_type, verb, product):
     # Get input prompt from request
     #disc_type = request.json['disc_type'] # like Di, iD, SC, CS
     #verb = request.json['verb'] # like sell, convince, persuade
