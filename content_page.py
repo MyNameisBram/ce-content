@@ -2,15 +2,11 @@ import streamlit as st
 import openai
 import pinecone
 
-# Set up OpenAI API credentials
-OPENAI_API_KEY = "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" # stream_lit_app
-openai.api_key = OPENAI_API_KEY
+
 
 
 # pinecone keys
-PINECONE_API_KEY = "e92fbe33-c661-457d-8e07-2ca0493b7047"
-PINECONE_API_ENV = "asia-southeast1-gcp"
-# Set up PineconeDB credentials
+
 pinecone.init(
     api_key=PINECONE_API_KEY,  # find at app.pinecone.io
     environment=PINECONE_API_ENV  # next to api key in console
