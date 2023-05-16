@@ -55,7 +55,7 @@ def generate_prompt(disc_type, objective_verb, product_type):
     return prompt
   
   
-def generate_text(disc_type, verb, product, api_key_input):
+def generate_text(disc_type, verb, product, api_key_input, pinecone_index):
     # Get input prompt from request
     #disc_type = request.json['disc_type'] # like Di, iD, SC, CS
     #verb = request.json['verb'] # like sell, convince, persuade
@@ -138,7 +138,7 @@ def main():
     
     # Create a dropdown menu for the second input
     option2 = st.selectbox("Select Option 2", 
-        ["sell", "email", "call"])
+        ["sell", "email"])
     st.write("You selected:", option2)
     
     # Create a dropdown menu for the third input
@@ -149,7 +149,7 @@ def main():
     # Create a button to run the LLM generator
     if st.button("Generate Content"):
         # run LLM generator 
-        result = generate_text(option1, option2, option3, api_key_input)
+        result = generate_text(option1, option2, option3, api_key_input, pinecone_index)
         st.write("LLM generated content:")
         st.write(result)
 
