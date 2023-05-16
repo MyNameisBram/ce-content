@@ -123,7 +123,7 @@ def main():
     # init pinecone
     # Set up PineconeDB credentials
     pinecone.init(
-        api_key=str(pinecone_api_key_input),  # find at app.pinecone.io
+        api_key=pinecone_api_key_input,  # find at app.pinecone.io
         environment=PINECONE_API_ENV  # next to api key in console
     )
     index_name = "crystal-disc" # put in the name of your pinecone index here
