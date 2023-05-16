@@ -9,18 +9,9 @@ import pinecone
 def set_openai_api_key(api_key: str):
     st.session_state["OPENAI_API_KEY"] = api_key
 
-
-# pinecone keys
-PINECONE_API_KEY = "e92fbe33-c661-457d-8e07-2ca0493b7047"
-PINECONE_API_ENV = "asia-southeast1-gcp"
-# Set up PineconeDB credentials
-pinecone.init(
-    api_key=PINECONE_API_KEY,  # find at app.pinecone.io
-    environment=PINECONE_API_ENV  # next to api key in console
-)
-index_name = "crystal-disc" # put in the name of your pinecone index here
-# connect to index
-pinecone_index = pinecone.Index(index_name)
+def set_pinecone_api_key(api_key: str):
+    st.session_state["PINECONE_API_KEY"] = api_key
+   
 
 
 # Define function to convert input prompt to OpenAI embedding
@@ -119,6 +110,28 @@ def main():
             value=st.session_state.get("OPENAI_API_KEY", ""),)
     
     #openai.api_key = api_key_input
+    
+    
+    pinecone_api_key_input = st.text_input(
+            "PineconeDB API Key",
+            type="password",
+            placeholder="Paste your PineconeDB API key here (sk-...)",
+            #help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
+            value=st.session_state.get("PINECONE_API_KEY", ""),)
+    
+    # pinecone keys
+    PINECONE_API_ENV = "asia-southeast1-gcp"
+    # Set up PineconeDB credentials
+
+
+
+    pinecone.init(
+        api_key=pinecone_api_key_input,  # find at app.pinecone.io
+        environment=PINECONE_API_ENV  # next to api key in console
+    )
+    index_name = "crystal-disc" # put in the name of your pinecone index here
+    # connect to index
+    pinecone_index = pinecone.Index(index_name)
 
     # Create a dropdown menu for the first input
     option1 = st.selectbox("Select Option 1", 
@@ -139,7 +152,8 @@ def main():
     if st.button("Generate Content"):
         # run LLM generator 
         result = generate_text(option1, option2, option3, api_key_input)
-        st.write("LLM generated content: \n{}".format(result))
+        st.write("LLM generated content:")
+        st.write(result)
 
 
 
