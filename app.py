@@ -11,7 +11,19 @@ def set_openai_api_key(api_key: str):
 
 def set_pinecone_api_key(api_key: str):
     st.session_state["PINECONE_API_KEY"] = api_key
-   
+
+# pinecone keys
+PINECONE_API_ENV = "asia-southeast1-gcp"
+# Set up PineconeDB credentials
+
+
+pinecone.init(
+    api_key=str(pinecone_api_key_input),  # find at app.pinecone.io
+    environment=PINECONE_API_ENV  # next to api key in console
+)
+index_name = "crystal-disc" # put in the name of your pinecone index here
+# connect to index
+pinecone_index = pinecone.Index(index_name)
 
 
 # Define function to convert input prompt to OpenAI embedding
@@ -111,7 +123,6 @@ def main():
     
     #openai.api_key = api_key_input
     
-    
     pinecone_api_key_input = st.text_input(
             "PineconeDB API Key",
             type="password",
@@ -119,19 +130,6 @@ def main():
             #help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
             value=st.session_state.get("PINECONE_API_KEY", ""),)
     
-    # pinecone keys
-    PINECONE_API_ENV = "asia-southeast1-gcp"
-    # Set up PineconeDB credentials
-
-
-
-    pinecone.init(
-        api_key=pinecone_api_key_input,  # find at app.pinecone.io
-        environment=PINECONE_API_ENV  # next to api key in console
-    )
-    index_name = "crystal-disc" # put in the name of your pinecone index here
-    # connect to index
-    pinecone_index = pinecone.Index(index_name)
 
     # Create a dropdown menu for the first input
     option1 = st.selectbox("Select Option 1", 
