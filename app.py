@@ -132,7 +132,7 @@ def main():
     
 
     # Create a dropdown menu for the first input
-    option1 = st.selectbox("Select Disc Type"", 
+    option1 = st.selectbox("Select Disc Type", 
         ['IS', 'Is', 'I', 'Id', 'DI', 'Di', 'D', 'Dc', 'CD', 'Cd', 'C', 'Cs', 'SC', 'Sc', 'S', 'Si'])
     
     
