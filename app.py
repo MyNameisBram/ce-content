@@ -126,9 +126,9 @@ def main():
         api_key=pinecone_api_key_input,  # find at app.pinecone.io
         environment=PINECONE_API_ENV  # next to api key in console
     )
-    index_name = "crystal-disc" # put in the name of your pinecone index here
+    #index_name = "crystal-disc" # put in the name of your pinecone index here
     # connect to index
-    pinecone_index = pinecone.Index(index_name)
+    pinecone_index = pinecone.Index("crystal-disc")
     
 
     # Create a dropdown menu for the first input
